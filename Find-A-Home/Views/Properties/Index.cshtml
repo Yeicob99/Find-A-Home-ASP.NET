@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Find_A_Home.Models.Property>
+@{
+	ViewData["Title"] = "Properties";
+}
+
+<h1>Properties</h1>
+
+<a asp-action="Create" class="btn btn-primary"> Create new property</a>
+
+<table class="table"> 
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Price</th>
+			<th>Address</th>
+			<th>Bedrooms</th>
+			<th>Bathrooms</th>
+			<th>Area</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var property in Model)
+
+		{
+			<tr>
+				<td>@property.Title</td>
+				<td>@property.Price</td>
+				<td>@property.Address</td>
+				<td>@property.Bedrooms</td>
+				<td>@property.Bathrooms</td>
+				<td>@property.Area</td>
+				<td>
+					<a asp-action="Details" asp-route-id="@property.Id" class="btn btn-sm btn-outline-dark">
+						View details
+					</a>
+					<a asp-action="Delete" asp-route-id="@property.Id" class="btn btn-sm btn-outline-danger">
+						Delete
+					</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

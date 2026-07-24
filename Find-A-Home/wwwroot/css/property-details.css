@@ -1,0 +1,200 @@
+﻿
+<style >
+.property-details-page {
+    background-color: #faf9f7;
+    color: #102033;
+}
+
+.property-back-link {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: #53627a;
+    text-decoration: none;
+}
+
+.property-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.property-title {
+    font-family: Georgia, serif;
+    font-size: 3.5rem;
+    margin-bottom: .5rem;
+}
+
+.property-location {
+    color: #53627a;
+    font-size: 1.1rem;
+}
+
+.property-price-box {
+    text-align: right;
+    margin-top: 2.5rem;
+}
+
+    .property-price-box h2 {
+        font-family: Georgia, serif;
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: .3rem;
+    }
+
+    .property-price-box p {
+        color: #53627a;
+    }
+
+.property-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.gallery-main img {
+    width: 100%;
+    height: 640px;
+    object-fit: cover;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+    .gallery-grid img {
+        width: 100%;
+        height: 312px;
+        object-fit: cover;
+    }
+
+.property-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.stat-label {
+    display: block;
+    text-transform: uppercase;
+    font-size: .8rem;
+    color: #53627a;
+    margin-bottom: .5rem;
+    letter-spacing: .05rem;
+}
+
+.property-stats strong {
+    font-family: Georgia, serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+}
+
+.property-section {
+    padding: 1.8rem 0;
+}
+
+    .property-section h2 {
+        font-family: Georgia, serif;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .property-section p {
+        color: #43516a;
+        font-size: 1.05rem;
+        line-height: 1.8;
+    }
+
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem 3rem;
+}
+
+.amenity-item {
+    font-size: 1rem;
+}
+
+.fake-map {
+    height: 260px;
+    border: 1px solid #dce3eb;
+    background-image: linear-gradient(#e7ebf0 1px, transparent 1px), linear-gradient(90deg, #e7ebf0 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-color: #f3f4f5;
+    position: relative;
+}
+
+    .fake-map span {
+        position: absolute;
+        top: 1.5rem;
+        left: 2rem;
+        background-color: #13243b;
+        color: white;
+        padding: .6rem 1.3rem;
+        border-radius: 999px;
+        font-weight: bold;
+    }
+
+.contact-card {
+    border: 1px solid #dce3eb;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .04);
+    position: sticky;
+    top: 2rem;
+}
+
+    .contact-card h3 {
+        font-family: Georgia, serif;
+        margin-bottom: .5rem;
+    }
+
+    .contact-card p {
+        color: #53627a;
+        margin-bottom: 1.5rem;
+    }
+
+.contact-button {
+    background-color: #13243b;
+    color: white;
+    padding: .9rem;
+}
+
+    .contact-button:hover {
+        background-color: #0d1a2b;
+        color: white;
+    }
+
+@@media (max-width: 992px) {
+    .property-header {
+        flex-direction: column;
+    }
+
+    .property-price-box {
+        text-align: left;
+        margin-top: 0;
+    }
+
+    .property-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-main img,
+    .gallery-grid img {
+        height: 300px;
+    }
+
+    .property-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .amenities-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style >

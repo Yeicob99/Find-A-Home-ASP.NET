@@ -1,0 +1,114 @@
+﻿.hero {
+    min-height: calc(100vh - 110px);
+    background-image: url('/images/landing/hero.webp');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.hero-overlay {
+    min-height: calc(100vh - 110px);
+    background: linear-gradient( 90deg, rgba(8, 36, 71, 0.92) 0%, rgba(8, 36, 71, 0.78) 42%, rgba(8, 36, 71, 0.45) 100% );
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 1180px;
+    width: 100%;
+    margin: 0px 0px 0px 100px;
+    padding: 0px;
+    color: white;
+}
+
+.hero-eyebrow {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 7px;
+    font-size: 15px;
+    margin-bottom: 32px;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(48px, 6vw, 88px);
+    line-height: 1.05;
+    font-weight: 500;
+    margin-bottom: 32px;
+}
+
+.hero p {
+    max-width: 720px;
+    font-size: 22px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 42px;
+}
+
+.hero-search {
+    display: grid;
+    grid-template-columns: 1.3fr 1.1fr 1fr 90px;
+    max-width: 1160px;
+    background-color: #faf9f7;
+    padding: 8px;
+}
+
+.search-field {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 28px;
+    border-right: 1px solid #d8dde6;
+    color: #53627a;
+}
+
+    .search-field input {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        font-size: 16px;
+        color: #102033;
+    }
+
+        .search-field input::placeholder {
+            color: #53627a;
+        }
+
+.search-button {
+    border: 0;
+    background-color: #10233f;
+    color: white;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .search-button:hover {
+        background-color: #0b1a30;
+    }
+
+@media (max-width: 900px) {
+    .hero-content {
+        padding: 64px 24px;
+    }
+
+    .hero-search {
+        grid-template-columns: 1fr;
+    }
+
+    .search-field {
+        border-right: 0;
+        border-bottom: 1px solid #d8dde6;
+        padding: 20px;
+    }
+
+    .search-button {
+        height: 64px;
+    }
+}
+
+/* CARDS CSS*/
+

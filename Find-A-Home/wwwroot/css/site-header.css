@@ -1,0 +1,100 @@
+﻿.estancia-header {
+    background-color: #faf9f7;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.estancia-navbar {
+    height: 78px;
+    display: flex;
+    align-items: center;
+}
+
+.estancia-container {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+}
+
+.estancia-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #102033;
+    text-decoration: none;
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+    .estancia-brand:hover {
+        color: #102033;
+    }
+
+    .estancia-brand i {
+        font-size: 24px;
+    }
+
+.estancia-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .estancia-nav-links a {
+        color: #4f5d73;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+        .estancia-nav-links a:hover {
+            color: #102033;
+        }
+
+.estancia-auth {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 22px;
+}
+
+    .estancia-auth a {
+        text-decoration: none;
+    }
+
+.estancia-login-icon {
+    color: #102033;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.estancia-login {
+    color: #102033;
+    font-size: 16px;
+}
+
+.estancia-register {
+    background-color: #10233f;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 2px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+    .estancia-register:hover {
+        background-color: #0b1a30;
+        color: white;
+    }
+
+.estancia-bottom-bar {
+    height: 32px;
+    background-color: #082447;
+}

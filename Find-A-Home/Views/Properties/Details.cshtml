@@ -1,0 +1,147 @@
+﻿	@{
+	ViewData["Title"] = "Details";
+}
+
+@section Styles {
+	<link rel="stylesheet" href="~/css/property-details.css" asp-append-version="true" />
+}
+@model Find_A_Home.Models.Property
+
+<section class="property-details-page">
+	<div class="container-fluid px-4 px-lg-5 py-4">
+
+		<a asp-action="Index" class="property-back-link">
+			<i class="bi bi-arrow-left me-1"></i> Volver a resultados
+		</a>
+
+		<div class="property-header">
+			<div>
+				<h1 class="property-title">@Model.Title</h1>
+				<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"> <i class="bi bi-pencil-square me-1"></i>Editar</a>
+				<p class="property-location">
+					<i class="bi bi-geo-alt-fill me-1"></i> @Model.Zone
+				</p>
+			</div>
+
+			<div class="property-price-box">
+				<h2>$@Model.Price.ToString("N0")</h2>
+				<p>@Model.PropertyType</p>
+			</div>
+		</div>
+
+		<div class="property-gallery">
+			<div class="gallery-main">
+				<img src="@Url.Content(Model.ImageUrl)" alt="@Model.Title" />
+			</div>
+		</div>
+	</div>
+
+	<div class="container py-5">
+		<div class="row g-5">
+
+			<div class="col-lg-8">
+				<div class="property-stats">
+					<div>
+						<span class="stat-label">Habitaciones</span>
+						<strong><i class="bi bi-house-door"></i> @Model.Bedrooms</strong>
+					</div>
+
+					<div>
+						<span class="stat-label">Baños</span>
+						<strong><i class="bi bi-bath"></i> @Model.Bathrooms</strong>
+					</div>
+
+					<div>
+						<span class="stat-label">Área</span>
+						<strong><i class="bi bi-arrows-fullscreen"></i> @Model.Area m²</strong>
+					</div>
+				</div>
+
+				<hr />
+
+				<section class="property-section">
+					<h2>Descripción</h2>
+					<p>@Model.Description</p>
+				</section>
+
+				<hr />
+
+				<section class="property-section">
+					<h2>Amenidades</h2>
+
+					<div class="amenities-grid">
+						@if (Model.HasPool)
+						{
+							<div class="amenity-item"><i class="bi bi-check-circle text-success me-2"></i>Piscina</div>
+						}
+
+						@if (Model.HasGym)
+						{
+							<div class="amenity-item"><i class="bi bi-check-circle text-success me-2"></i>Gimnasio</div>
+						}
+
+						@if (Model.HasSecurity)
+						{
+							<div class="amenity-item"><i class="bi bi-check-circle text-success me-2"></i>Seguridad 24/7</div>
+						}
+
+						@if (Model.HasGarden)
+						{
+							<div class="amenity-item"><i class="bi bi-check-circle text-success me-2"></i>Jardín</div>
+						}
+
+						@if (Model.HasTerrace)
+						{
+							<div class="amenity-item"><i class="bi bi-check-circle text-success me-2"></i>Terraza</div>
+						}
+
+						@if (Model.HasConcierge)
+						{
+							<div class="amenity-item"><i class="bi bi-check-circle text-success me-2"></i>Concierge</div>
+						}
+
+						@if (Model.HasStorage)
+						{
+							<div class="amenity-item"><i class="bi bi-check-circle text-success me-2"></i>Bodega</div>
+						}
+
+						@if (Model.HasParking)
+						{
+							<div class="amenity-item"><i class="bi bi-check-circle text-success me-2"></i>Estacionamiento</div>
+						}
+					</div>
+				</section>
+
+				<hr />
+
+				<section class="property-section">
+					<h2>Ubicación</h2>
+
+					<div class="fake-map">
+						<span><i class="bi bi-geo-alt-fill me-1"></i> $@Model.Price.ToString("N0")</span>
+					</div>
+				</section>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="contact-card">
+					<h3>Contactar al vendedor</h3>
+					<p>Te responderemos en menos de 24h.</p>
+
+					<form>
+						<input class="form-control rounded-0 mb-3" placeholder="Nombre completo" />
+						<input class="form-control rounded-0 mb-3" placeholder="Correo electrónico" />
+						<input class="form-control rounded-0 mb-3" placeholder="Teléfono" />
+
+						<textarea class="form-control rounded-0 mb-3" rows="5">Hola, me interesa @Model.Title...</textarea>
+
+						<button type="button" class="btn contact-button w-100 rounded-0">
+							<i class="bi bi-send me-1"></i> Enviar mensaje
+						</button>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>

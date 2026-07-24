@@ -1,0 +1,27 @@
+﻿@model Find_A_Home.Models.Property
+
+@{
+    ViewData["Title"] = "Delete Property";
+}
+
+<h1>Delete Property</h1>
+
+<p>Are you sure you want to delete this property?</p>
+
+<div>
+    <h3>@Model.Title</h3>
+    <p><strong>Price:</strong> @Model.Price</p>
+    <p><strong>Zona:</strong> @Model.Zone</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit" class="btn btn-danger">
+        Yes, delete
+    </button>
+
+    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">
+        Cancel
+    </a>
+</form>

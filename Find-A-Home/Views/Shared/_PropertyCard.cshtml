@@ -1,0 +1,45 @@
+﻿@model Find_A_Home.Models.Property
+<article class="property-card">
+	<a asp-controller="Properties"
+	   asp-action="Details"
+	   asp-route-id="@Model.Id"
+	   class="property-card-link">
+		<div class="property-card-image-wrapper">
+			<span class="property-card-badge">
+				@Model.PropertyType
+			</span>
+
+			<img src="@Model.ImageUrl"
+				 alt="@Model.Title"
+				 class="property-card-image" />
+		</div>
+
+		<div class="property-card-body">
+			<div class="property-card-title-row">
+				<h3>@Model.Title</h3>
+				<strong>$@Model.Price.ToString("N0")</strong>
+			</div>
+	</a>
+	<p class="property-card-location">
+		<i class="bi bi-geo-alt"></i>
+		@Model.Zone
+	</p>
+
+	<div class="property-card-meta">
+		<span>
+			<i class="bi bi-door-open"></i>
+			@Model.Bedrooms
+		</span>
+
+		<span>
+			<i class="bi bi-droplet"></i>
+			@Model.Bathrooms
+		</span>
+
+		<span>
+			<i class="bi bi-bounding-box"></i>
+			@Model.Area m²
+		</span>
+	</div>
+	</div>
+</article>

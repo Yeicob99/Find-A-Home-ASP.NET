@@ -1,22 +1,26 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+:root {
+    --color-primary: #102033;
+    --color-secondary: #53627a;
+    --color-background: #faf9f7;
+    --color-accent: #082447;
+    --font-heading: Georgia, 'Times New Roman', serif;
+    --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: var(--color-background);
+    color: var(--color-primary);
+    font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6,
+.heading-font {
+    font-family: var(--font-heading);
+}
+
+input,
+textarea,
+select,
+button {
+    font-family: inherit;
 }

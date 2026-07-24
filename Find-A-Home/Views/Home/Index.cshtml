@@ -1,8 +1,143 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model Find_A_Home.Models.ViewModels.HomeViewModel
+
+@{
+	ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@section Styles {
+	<link rel="stylesheet"
+		  href="https://cdn.jsdelivr.net/npm/nouislider@15.8.1/dist/nouislider.min.css" />
+	<link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
+}
+
+<section class="hero">
+	<div class="hero-overlay">
+		<div class="hero-content">
+			<span class="hero-eyebrow">Bienes raíces · Premium</span>
+
+			<h1>
+				Encuentra el lugar donde<br />
+				tu historia continúa.
+			</h1>
+
+			<p>
+				Una colección curada de propiedades excepcionales.
+				Buscamos por ti los espacios que merecen ser llamados hogar.
+			</p>
+
+			<form class="hero-search" asp-controller="Properties" asp-action="Index" method="get">
+				<div class="search-field">
+					<i class="bi bi-map"></i>
+					<select asp-for="Filters.ProvinceId"
+							id="provinceSelect"
+							class="form-control">
+
+						<option value="">Seleccione una provincia</option>
+						@foreach (var province in Model.Provinces)
+						{
+							<option value="@province.Id">
+								@province.Name
+							</option>
+						}
+					</select>
+				</div>
+
+				<div class="search-field">
+					<i class="bi bi-geo-alt"></i>
+					<select asp-for="Filters.ZoneId"
+							id="zoneSelect"
+							class="form-control"
+							disabled>
+						<option value="">Seleccione una zona</option>
+
+					</select>
+				</div>
+
+				<div class="search-field price-filter">
+					<i class="bi bi-currency-dollar"></i>
+
+					<div class="price-filter-content">
+						<div class="price-values">
+							<span id="minPriceLabel">$0</span>
+							<span>-</span>
+							<span id="maxPriceLabel">$2,000,000</span>
+						</div>
+
+						<div id="priceSlider"></div>
+					</div>
+
+					<input type="hidden"
+						   name="MinPrice"
+						   id="minPrice"
+						   value="0" />
+
+					<input type="hidden"
+						   name="MaxPrice"
+						   id="maxPrice"
+						   value="2000000" />
+				</div>
+
+				<button type="submit" class="search-button">
+					<i class="bi bi-search"></i>
+				</button>
+			</form>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="featured-grid">
+
+		@foreach (var property in Model.FeaturedProperties)
+		{
+			<partial name="_PropertyCard" model="property" />
+		}
+
+	</div>
+</section>
+
+@section Scripts {
+	<script src="https://cdn.jsdelivr.net/npm/nouislider@15.8.1/dist/nouislider.min.js"></script>
+
+	<script>
+		const priceSlider = document.getElementById("priceSlider");
+		const minPriceInput = document.getElementById("minPrice");
+		const maxPriceInput = document.getElementById("maxPrice");
+		const minPriceLabel = document.getElementById("minPriceLabel");
+		const maxPriceLabel = document.getElementById("maxPriceLabel");
+
+		noUiSlider.create(priceSlider, {
+			start: [0, 2000000],
+			connect: true,
+			step: 10000,
+			range: {
+				min: 0,
+				max: 2000000
+			}
+		});
+
+		priceSlider.noUiSlider.on("update", function (values) {
+			const minValue = Math.round(values[0]);
+			const maxValue = Math.round(values[1]);
+
+			minPriceInput.value = minValue;
+			maxPriceInput.value = maxValue;
+
+			minPriceLabel.textContent =
+				"$" + minValue.toLocaleString();
+
+			maxPriceLabel.textContent =
+				"$" + maxValue.toLocaleString();
+		});
+	</script>
+	<script>
+		const provinceSelect = document.getElementById("provinceSelect");
+		const zoneSelect = document.getElementById("zoneSelect");
+
+		provinceSelect.addEventListener("change", function () {
+		const provinceId = this.value;
+
+		console.log(provinceId);
+		});
+	</script>
+}

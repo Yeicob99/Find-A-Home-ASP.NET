@@ -1,0 +1,169 @@
+﻿@model Find_A_Home.Models.Property
+
+@{
+    ViewData["Title"] = "Editar propiedad";
+}
+
+<section class="container py-5">
+    <h1 class="mb-4">Editar propiedad</h1>
+
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="ImageUrl" />
+
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Título</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label">Precio</label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PropertyType" class="form-label">Tipo</label>
+            <select asp-for="PropertyType" class="form-select">
+                <option value="">Selecciona un tipo</option>
+                <option value="House">Casa</option>
+                <option value="Apartment">Apartamento</option>
+                <option value="Villa">Villa</option>
+                <option value="Penthouse">Penthouse</option>
+                <option value="Studio">Estudio</option>
+                <option value="Land">Terreno</option>
+            </select>
+            <span asp-validation-for="PropertyType" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Bedrooms" class="form-label">Habitaciones</label>
+            <input asp-for="Bedrooms" class="form-control" />
+            <span asp-validation-for="Bedrooms" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Bathrooms" class="form-label">Baños</label>
+            <input asp-for="Bathrooms" class="form-control" />
+            <span asp-validation-for="Bathrooms" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Area" class="form-label">Área</label>
+            <input asp-for="Area" class="form-control" />
+            <span asp-validation-for="Area" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Address" class="form-label">Dirección</label>
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Zone" class="form-label">Zona</label>
+            <input asp-for="Zone" class="form-control" />
+            <span asp-validation-for="Zone" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ZoneId" class="form-label">ID de Zona</label>
+            <input asp-for="ZoneId" class="form-control" />
+            <span asp-validation-for="ZoneId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Descripción</label>
+            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div>
+                <input type="file" asp-for="ImageFile" class="form-control"/>
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+
+                <small class="text-muted">
+                    PNG, JPG hasta 10MB · máx. 20 imágenes
+                </small>
+        </div>
+
+
+        <div class="mb-4">
+            <label class="form-label">Características</label>
+
+            <div class="row">
+                <div class="col-md-4 mb-2">
+                    <label>
+                        <input asp-for="HasPool" class="form-check-input me-2" />
+                        Piscina
+                    </label>
+                </div>
+
+                <div class="col-md-4 mb-2">
+                    <label>
+                        <input asp-for="HasGym" class="form-check-input me-2" />
+                        Gimnasio
+                    </label>
+                </div>
+
+                <div class="col-md-4 mb-2">
+                    <label>
+                        <input asp-for="HasSecurity" class="form-check-input me-2" />
+                        Seguridad 24/7
+                    </label>
+                </div>
+
+                <div class="col-md-4 mb-2">
+                    <label>
+                        <input asp-for="HasGarden" class="form-check-input me-2" />
+                        Jardín
+                    </label>
+                </div>
+
+                <div class="col-md-4 mb-2">
+                    <label>
+                        <input asp-for="HasTerrace" class="form-check-input me-2" />
+                        Terraza
+                    </label>
+                </div>
+
+                <div class="col-md-4 mb-2">
+                    <label>
+                        <input asp-for="HasConcierge" class="form-check-input me-2" />
+                        Concierge
+                    </label>
+                </div>
+
+                <div class="col-md-4 mb-2">
+                    <label>
+                        <input asp-for="HasStorage" class="form-check-input me-2" />
+                        Bodega
+                    </label>
+                </div>
+
+                <div class="col-md-4 mb-2">
+                    <label>
+                        <input asp-for="HasParking" class="form-check-input me-2" />
+                        Estacionamiento
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-dark">
+            Guardar cambios
+        </button>
+
+        <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">
+            Cancelar
+        </a>
+    </form>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
