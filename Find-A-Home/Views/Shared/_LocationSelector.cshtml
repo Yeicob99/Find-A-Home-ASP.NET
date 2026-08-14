@@ -1,0 +1,34 @@
+﻿@model Find_A_Home.Models.ViewModels.LocationSelectorViewModel
+
+<div class="mb-3">
+    <label asp-for="ProvinceId" class="visually-hidden">Provincia</label>
+
+    <select asp-for="ProvinceId"
+            name="Location.ProvinceId"
+            id="provinceSelect"
+            class="form-select">
+
+        <option value="">Seleccione una provincia</option>
+
+        @foreach (var province in Model.Provinces)
+        {
+            <option value="@province.Id">@province.Name</option>
+		}
+    </select>
+
+    <span asp-validation-for="ProvinceId" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="ZoneId" class="visually-hidden">Zona</label>
+    <select asp-for="ZoneId"
+            name="Location.ZoneId"
+            id="zoneSelect"
+            class="form-select"
+            disabled="@(Model.ProvinceId is null)">
+
+        <option value="">Seleccione una zona</option>
+    </select>
+
+    <span asp-validation-for="ZoneId" class="text-danger"></span>
+</div>

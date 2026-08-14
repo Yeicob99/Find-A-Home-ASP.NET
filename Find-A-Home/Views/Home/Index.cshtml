@@ -24,32 +24,24 @@
 				Una colección curada de propiedades excepcionales.
 				Buscamos por ti los espacios que merecen ser llamados hogar.
 			</p>
-
 			<form class="hero-search" asp-controller="Properties" asp-action="Index" method="get">
 				<div class="search-field">
 					<i class="bi bi-map"></i>
-					<select asp-for="Filters.ProvinceId"
-							id="provinceSelect"
-							class="form-control">
-
-						<option value="">Seleccione una provincia</option>
-						@foreach (var province in Model.Provinces)
-						{
-							<option value="@province.Id">
-								@province.Name
-							</option>
-						}
-					</select>
+					<div class="home-location-selector">
+						<partial name="_LocationSelector"
+								 model="Model.Location" />
+					</div>
 				</div>
 
 				<div class="search-field">
-					<i class="bi bi-geo-alt"></i>
-					<select asp-for="Filters.ZoneId"
-							id="zoneSelect"
-							class="form-control"
-							disabled>
-						<option value="">Seleccione una zona</option>
+					<i class="bi bi-house"></i>
+					<label asp-for="Filters.PropertyType" class="visually-hidden">Tipo de propiedad</label>
 
+					<select asp-for="Filters.PropertyType" class="form-select">
+						<option value="">Tipo de propiedad</option>
+						<option value="Casa">Casa</option>
+						<option value="Departamento">Departamento</option>
+						<option value="Terreno">Terreno</option>
 					</select>
 				</div>
 
@@ -98,6 +90,7 @@
 
 @section Scripts {
 	<script src="https://cdn.jsdelivr.net/npm/nouislider@15.8.1/dist/nouislider.min.js"></script>
+	<script src="~/js/location-selector.js" asp-append-version="true"></script>
 
 	<script>
 		const priceSlider = document.getElementById("priceSlider");
@@ -129,15 +122,6 @@
 			maxPriceLabel.textContent =
 				"$" + maxValue.toLocaleString();
 		});
-	</script>
-	<script>
-		const provinceSelect = document.getElementById("provinceSelect");
-		const zoneSelect = document.getElementById("zoneSelect");
 
-		provinceSelect.addEventListener("change", function () {
-		const provinceId = this.value;
-
-		console.log(provinceId);
-		});
 	</script>
 }

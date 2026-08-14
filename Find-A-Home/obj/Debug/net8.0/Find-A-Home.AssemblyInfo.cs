@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Find-A-Home")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e603afa44cb547fabe577b33d48c52101d033644")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed0e650599706c466b1f7385d8be42c96cf07305")]
 [assembly: System.Reflection.AssemblyProductAttribute("Find-A-Home")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Find-A-Home")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

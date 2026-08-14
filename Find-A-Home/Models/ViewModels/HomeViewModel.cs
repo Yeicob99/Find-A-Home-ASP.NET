@@ -4,6 +4,6 @@
     {
         public PropertyFilterViewModel Filters { get; set; } = new();
         public IEnumerable<Property> FeaturedProperties { get; set; } = new List<Property>();
-        public List<Province> Provinces { get; internal set; }
+        public LocationSelectorViewModel Location { get; set; } = new();
     }
 }

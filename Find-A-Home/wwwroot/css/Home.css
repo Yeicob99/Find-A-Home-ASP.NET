@@ -77,6 +77,9 @@
         }
 
 .search-button {
+    width: 90px;
+    min-width: 90px;
+    height: 64px;
     border: 0;
     background-color: #10233f;
     color: white;
@@ -108,6 +111,27 @@
     .search-button {
         height: 64px;
     }
+}
+
+.home-location-selector {
+    display: flex;
+    align-items: end;
+    gap: 16px;
+    flex: 1;
+}
+    .home-location-selector > div {
+        margin-bottom: 0 !important;
+        flex: 1;
+        min-width: 230px;
+
+    }
+    .home-location-selector select {
+        width: 100%;
+    }
+
+.search-field > select {
+    width: 180px;
+    min-width: 0;
 }
 
 /* CARDS CSS*/

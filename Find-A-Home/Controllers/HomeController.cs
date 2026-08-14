@@ -15,6 +15,7 @@ namespace Find_A_Home.Controllers
             this.context = context;
         }
         public async Task<IActionResult> Index()
+
         {
             var featuredProperties = await context.Properties
                 .OrderByDescending(p => p.Id)
@@ -25,13 +26,16 @@ namespace Find_A_Home.Controllers
                 .OrderBy(p => p.Id)
                 .ToListAsync();
 
-            var viewModel = new HomeViewModel
+            var vm = new HomeViewModel
             {
                 FeaturedProperties = featuredProperties,
-                Provinces = provinces
+                Location = new LocationSelectorViewModel
+                {
+                    Provinces = provinces,
+                }
             };
 
-            return View(viewModel);
+            return View(vm);
 
         }
 

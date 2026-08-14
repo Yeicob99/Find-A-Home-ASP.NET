@@ -1,4 +1,5 @@
-﻿using Find_A_Home.Data;
+﻿using System.Reflection.Metadata.Ecma335;
+using Find_A_Home.Data;
 using Find_A_Home.Models;
 using Find_A_Home.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -46,28 +47,88 @@ namespace Find_A_Home.Controllers
 
         }
 
-        public IActionResult Create()
+        [HttpGet]
+
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var vm = new PropertyCreateViewModel();
+
+            vm.Location.Provinces = await context.Provinces
+                .OrderBy(p => p.Name)
+                .ToListAsync();
+
+            return View(vm);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetZonesByProvince(int provinceId)
+        {
+            var zones = await context.Zones
+            .Where(z => z.ProvinceId == provinceId)
+                .OrderBy(z => z.Name)
+                .Select
+                (z => new
+                {
+                    z.Id,
+                    z.Name
+                })
+                .ToListAsync();
+            return Json(zones);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Property property)
+        public async Task<IActionResult> Create(PropertyCreateViewModel vm)
         {
             if (!ModelState.IsValid)
             {
-                return View(property);
+                vm.Location.Provinces = await context.Provinces
+                    .OrderBy(p => p.Name)
+                    .ToListAsync();
+
+                if (vm.Location.ProvinceId.HasValue)
+
+                {
+                    vm.Location.Zones = await context.Zones
+                        .Where(z => z.ProvinceId == vm.Location.ProvinceId.Value)
+                        .OrderBy(z => z.Name)
+                        .ToListAsync();
+                }
+                return View(vm);
             }
 
-            if (property.ImageFile is not null && property.ImageFile.Length > 0)
+            var property = new Property
+            {
+                Title = vm.Title,
+                Price = vm.Price,
+                PropertyType = vm.PropertyType,
+                Bedrooms = vm.Bedrooms,
+                Bathrooms = vm.Bathrooms,
+                Area = vm.Area,
+
+                ZoneId = vm.Location.ZoneId.Value,
+
+                Description = vm.Description,
+                HasPool = vm.HasPool,
+                HasGym = vm.HasGym,
+                HasSecurity = vm.HasSecurity,
+                HasGarden = vm.HasGarden,
+                HasTerrace = vm.HasTerrace,
+                HasConcierge = vm.HasConcierge,
+                HasStorage = vm.HasStorage,
+                HasParking = vm.HasParking,
+                Address = vm.Address ?? string.Empty
+            };
+
+            if (vm.ImageFile is not null && vm.ImageFile.Length > 0)
             {
                 var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
 
-                var extension = Path.GetExtension(property.ImageFile.FileName).ToLowerInvariant();
+                var extension = Path.GetExtension(vm.ImageFile.FileName).ToLowerInvariant();
                 if (!allowedExtensions.Contains(extension))
                 {
                     ModelState.AddModelError("ImageFile", "Invalid file type. Only JPG, JPEG, and PNG are allowed.");
-                    return View(property);
+                    return View(vm);
                 }
                 var uploadsFolder = Path.Combine(environment.WebRootPath, "images", "properties");
 
@@ -83,7 +144,7 @@ namespace Find_A_Home.Controllers
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
 
-                    await property.ImageFile.CopyToAsync(fileStream);
+                    await vm.ImageFile.CopyToAsync(fileStream);
                 }
                 property.ImageUrl = $"/images/properties/{fileName}";
             }
@@ -100,7 +161,10 @@ namespace Find_A_Home.Controllers
                 return (NotFound());
             }
 
-            var property = await context.Properties.FirstOrDefaultAsync(p => p.Id == id);
+            var property = await context.Properties
+                .Include(p => p.Zone)
+                    .ThenInclude(z => z.Province)
+                .FirstOrDefaultAsync(p => p.Id == id);
 
             if (property == null)
             {
@@ -180,7 +244,7 @@ namespace Find_A_Home.Controllers
             {
                 return NotFound();
             }
-                
+
             property.ImageUrl = existingProperty.ImageUrl;
 
             if (property.ImageFile is not null && property.ImageFile.Length > 0)

@@ -19,7 +19,7 @@
 				<h1 class="property-title">@Model.Title</h1>
 				<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"> <i class="bi bi-pencil-square me-1"></i>Editar</a>
 				<p class="property-location">
-					<i class="bi bi-geo-alt-fill me-1"></i> @Model.Zone
+					<i class="bi bi-geo-alt-fill me-1"></i> @Model.Zone.Name, @Model.Zone.Province.Name
 				</p>
 			</div>
 
@@ -116,7 +116,15 @@
 
 				<section class="property-section">
 					<h2>Ubicación</h2>
-
+					<hr />
+					<div>
+						<span class="stat-label">Provincia</span>
+						<strong><i class="bi bi-house-door"></i> @Model.Zone.Province.Name</strong>
+					</div>
+					<div>
+						<span class="stat-label">Zona</span>
+						<strong><i class="bi bi-house-door"></i> @Model.Zone.Name</strong>
+					</div>
 					<div class="fake-map">
 						<span><i class="bi bi-geo-alt-fill me-1"></i> $@Model.Price.ToString("N0")</span>
 					</div>

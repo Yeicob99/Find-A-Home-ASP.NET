@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Find_A_Home.Data.Seed;
 using Find_A_Home.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Find_A_Home.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -19,38 +21,7 @@ namespace Find_A_Home.Data
 
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Province>().HasData(
-                new Province
-                {
-                    Id = 1,
-                    Name = "Distrito Nacional",
-                },
-                new Province
-                {
-                    Id = 2,
-                    Name = "Santo Domingo",
-                },
-                new Province
-                {
-                    Id = 3,
-                    Name = "Santiago",
-                }
-
-            );
-            modelBuilder.Entity<Zone>().HasData(
-                new Zone
-                {
-                    Id = 1,
-                    Name = "Naco",
-                    ProvinceId = 1,
-                },
-                new Zone
-                {
-                    Id = 2,
-                    Name = "Piantini",
-                    ProvinceId = 1,
-                }
-                );
+            LocationSeed.Seed(modelBuilder);
         }
     }
 }

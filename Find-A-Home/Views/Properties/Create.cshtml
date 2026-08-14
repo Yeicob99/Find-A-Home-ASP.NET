@@ -1,187 +1,188 @@
 ﻿@model Find_A_Home.Models.ViewModels.PropertyCreateViewModel
 
 @{
-	ViewData["Title"] = "Create Property"; 
+	ViewData["Title"] = "Create Property";
 }
 
 <section class="container py-5">
-    <p class="text-uppercase text-muted small" style="letter-spacing: 6px;">
-        Panel de control
-    </p>
+	<p class="text-uppercase text-muted small" style="letter-spacing: 6px;">
+		Panel de control
+	</p>
 
-    <h1 class="display-4 mb-5" style="font-family: Georgia, serif;">
-        Bienvenido de vuelta
-    </h1>
+	<h1 class="display-4 mb-5" style="font-family: Georgia, serif;">
+		Bienvenido de vuelta
+	</h1>
 
-    <div class="mb-4">
-        <a asp-action="Index" class="btn btn-light border-0 rounded-0 px-3 py-2">
-            Mis propiedades
-        </a>
+	<div class="mb-4">
+		<a asp-action="Index" class="btn btn-light border-0 rounded-0 px-3 py-2">
+			Mis propiedades
+		</a>
 
-        <a asp-action="Create" class="btn btn-light border rounded-0 px-3 py-2 fw-semibold">
-            + Publicar nueva
-        </a>
-    </div>
+		<a asp-action="Create" class="btn btn-light border rounded-0 px-3 py-2 fw-semibold">
+			+ Publicar nueva
+		</a>
+	</div>
 
-    <form asp-action="Create" method="post" enctype="multipart/form-data">
-        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+	<form asp-action="Create" method="post" enctype="multipart/form-data">
+		<div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-        <div class="mb-4">
-            <label asp-for="Title" class="form-label">Título</label>
-            <input asp-for="Title" class="form-control rounded-0 py-3"
-                   placeholder="Ej. Villa Aurora con vista al jardín" />
-            <span asp-validation-for="Title" class="text-danger"></span>
-        </div>
+		<div class="mb-4">
+			<label asp-for="Title" class="form-label">Título</label>
+			<input asp-for="Title" class="form-control rounded-0 py-3"
+				   placeholder="Ej. Villa Aurora con vista al jardín" />
+			<span asp-validation-for="Title" class="text-danger"></span>
+		</div>
 
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label asp-for="Price" class="form-label">Precio (USD)</label>
-                <input asp-for="Price" class="form-control rounded-0 py-3"
-                       placeholder="850000" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<label asp-for="Price" class="form-label">Precio (USD)</label>
+				<input asp-for="Price" class="form-control rounded-0 py-3"
+					   placeholder="850000" />
+				<span asp-validation-for="Price" class="text-danger"></span>
+			</div>
 
-            <div class="col-md-6 mb-3">
-                <label asp-for="PropertyType" class="form-label">Tipo</label>
-               <select asp-for="PropertyType" class="form-control rounded-0 py-3">
+			<div class="col-md-6 mb-3">
+				<label asp-for="PropertyType" class="form-label">Tipo</label>
+				<select asp-for="PropertyType" class="form-control rounded-0 py-3">
 					<option value="">Selecciona un tipo</option>
 					<option value="Casa">Casa</option>
 					<option value="Departamento">Departamento</option>
 					<option value="Terreno">Terreno</option>
-               </select>
-                <span asp-validation-for="PropertyType" class="text-danger"></span>
-            </div>
+				</select>
+				<span asp-validation-for="PropertyType" class="text-danger"></span>
+			</div>
 
-            <div class="col-md-6 mb-3">
-                <label asp-for="Bedrooms" class="form-label">Habitaciones</label>
-                <input asp-for="Bedrooms" class="form-control rounded-0 py-3" />
-                <span asp-validation-for="Bedrooms" class="text-danger"></span>
-            </div>
+			<div class="col-md-6 mb-3">
+				<label asp-for="Bedrooms" class="form-label">Habitaciones</label>
+				<input asp-for="Bedrooms" class="form-control rounded-0 py-3" />
+				<span asp-validation-for="Bedrooms" class="text-danger"></span>
+			</div>
 
-            <div class="col-md-6 mb-3">
-                <label asp-for="Bathrooms" class="form-label">Baños</label>
-                <input asp-for="Bathrooms" class="form-control rounded-0 py-3" />
-                <span asp-validation-for="Bathrooms" class="text-danger"></span>
-            </div>
+			<div class="col-md-6 mb-3">
+				<label asp-for="Bathrooms" class="form-label">Baños</label>
+				<input asp-for="Bathrooms" class="form-control rounded-0 py-3" />
+				<span asp-validation-for="Bathrooms" class="text-danger"></span>
+			</div>
 
-            <div class="col-md-6 mb-3">
-                <label asp-for="Area" class="form-label">Área (m²)</label>
-                <input asp-for="Area" class="form-control rounded-0 py-3" />
-                <span asp-validation-for="Area" class="text-danger"></span>
-            </div>
+			<div class="col-md-6 mb-3">
+				<label asp-for="Area" class="form-label">Área (m²)</label>
+				<input asp-for="Area" class="form-control rounded-0 py-3" />
+				<span asp-validation-for="Area" class="text-danger"></span>
+			</div>
+			<div>
 
-            <div class="col-md-6 mb-3">
-                <label asp-for="City" class="form-label">Ciudad</label>
-                <input asp-for="City" class="form-control rounded-0 py-3"
-                       placeholder="Polanco, CDMX" />
-                <span asp-validation-for="City" class="text-danger"></span>
-            </div>
-        </div>
-        
-        <div class="mb-4">
-            <label class="form-label">Fotos</label>
+				<partial name="_LocationSelector"
+						 model="Model.Location" />
+			</div>
 
-            <div class="text-center p-5"
-                 style="border: 2px dashed #d7e1f0; min-height: 220px;">
-                <div style="font-size: 38px; color: #5b677a;">⬆</div>
+		</div>
 
-                <input type="file" asp-for="ImageFile" class="form-control"/>
-                <span asp-validation-for="ImageFile" class="text-danger"></span>
+		<div class="mb-4">
+			<label class="form-label">Fotos</label>
 
-                <small class="text-muted">
-                    PNG, JPG hasta 10MB · máx. 20 imágenes
-                </small>
-            </div>
-        </div>
+			<div class="text-center p-5"
+				 style="border: 2px dashed #d7e1f0; min-height: 220px;">
+				<div style="font-size: 38px; color: #5b677a;">⬆</div>
 
-        <div class="mb-4">
-            <label asp-for="Description" class="form-label">Descripción</label>
-            <textarea asp-for="Description"
-                      class="form-control rounded-0"
-                      rows="6"
-                      placeholder="Describe los detalles únicos de la propiedad..."></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
+				<input type="file" asp-for="ImageFile" class="form-control" />
+				<span asp-validation-for="ImageFile" class="text-danger"></span>
 
-        <div class="mb-4">
-            <label class="form-label">Características</label>
+				<small class="text-muted">
+					PNG, JPG hasta 10MB · máx. 20 imágenes
+				</small>
+			</div>
+		</div>
 
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <label class="border p-3 w-100">
-                        <input asp-for="HasPool" class="form-check-input me-2" />
-                        Piscina
-                    </label>
-                </div>
+		<div class="mb-4">
+			<label asp-for="Description" class="form-label">Descripción</label>
+			<textarea asp-for="Description"
+					  class="form-control rounded-0"
+					  rows="6"
+					  placeholder="Describe los detalles únicos de la propiedad..."></textarea>
+			<span asp-validation-for="Description" class="text-danger"></span>
+		</div>
 
-                <div class="col-md-4 mb-3">
-                    <label class="border p-3 w-100">
-                        <input asp-for="HasGym" class="form-check-input me-2" />
-                        Gimnasio
-                    </label>
-                </div>
+		<div class="mb-4">
+			<label class="form-label">Características</label>
 
-                <div class="col-md-4 mb-3">
-                    <label class="border p-3 w-100">
-                        <input asp-for="HasSecurity" class="form-check-input me-2" />
-                        Seguridad 24/7
-                    </label>
-                </div>
+			<div class="row">
+				<div class="col-md-4 mb-3">
+					<label class="border p-3 w-100">
+						<input asp-for="HasPool" class="form-check-input me-2" />
+						Piscina
+					</label>
+				</div>
 
-                <div class="col-md-4 mb-3">
-                    <label class="border p-3 w-100">
-                        <input asp-for="HasGarden" class="form-check-input me-2" />
-                        Jardín
-                    </label>
-                </div>
+				<div class="col-md-4 mb-3">
+					<label class="border p-3 w-100">
+						<input asp-for="HasGym" class="form-check-input me-2" />
+						Gimnasio
+					</label>
+				</div>
 
-                <div class="col-md-4 mb-3">
-                    <label class="border p-3 w-100">
-                        <input asp-for="HasTerrace" class="form-check-input me-2" />
-                        Terraza
-                    </label>
-                </div>
+				<div class="col-md-4 mb-3">
+					<label class="border p-3 w-100">
+						<input asp-for="HasSecurity" class="form-check-input me-2" />
+						Seguridad 24/7
+					</label>
+				</div>
 
-                <div class="col-md-4 mb-3">
-                    <label class="border p-3 w-100">
-                        <input asp-for="HasConcierge" class="form-check-input me-2" />
-                        Concierge
-                    </label>
-                </div>
+				<div class="col-md-4 mb-3">
+					<label class="border p-3 w-100">
+						<input asp-for="HasGarden" class="form-check-input me-2" />
+						Jardín
+					</label>
+				</div>
 
-                <div class="col-md-4 mb-3">
-                    <label class="border p-3 w-100">
-                        <input asp-for="HasStorage" class="form-check-input me-2" />
-                        Bodega
-                    </label>
-                </div>
+				<div class="col-md-4 mb-3">
+					<label class="border p-3 w-100">
+						<input asp-for="HasTerrace" class="form-check-input me-2" />
+						Terraza
+					</label>
+				</div>
 
-                <div class="col-md-4 mb-3">
-                    <label class="border p-3 w-100">
-                        <input asp-for="HasParking" class="form-check-input me-2" />
-                        Estacionamiento
-                    </label>
-                </div>
-            </div>
-        </div>
+				<div class="col-md-4 mb-3">
+					<label class="border p-3 w-100">
+						<input asp-for="HasConcierge" class="form-check-input me-2" />
+						Concierge
+					</label>
+				</div>
 
-        <div class="d-flex gap-3 mt-5">
-            <button type="submit"
-                    class="btn rounded-0 px-5 py-3 text-white"
-                    style="background-color: #13243b;">
-                Publicar propiedad
-            </button>
+				<div class="col-md-4 mb-3">
+					<label class="border p-3 w-100">
+						<input asp-for="HasStorage" class="form-check-input me-2" />
+						Bodega
+					</label>
+				</div>
 
-            <a asp-action="Index"
-               class="btn btn-outline-secondary rounded-0 px-5 py-3">
-                Guardar borrador                                                                                                                                            
-            </a>
-        </div>
-    </form>
+				<div class="col-md-4 mb-3">
+					<label class="border p-3 w-100">
+						<input asp-for="HasParking" class="form-check-input me-2" />
+						Estacionamiento
+					</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="d-flex gap-3 mt-5">
+			<button type="submit"
+					class="btn rounded-0 px-5 py-3 text-white"
+					style="background-color: #13243b;">
+				Publicar propiedad
+			</button>
+
+			<a asp-action="Index"
+			   class="btn btn-outline-secondary rounded-0 px-5 py-3">
+				Guardar borrador
+			</a>
+		</div>
+	</form>
 </section>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+		<script src="~/js/location-selector.js" asp-append-version="true"></script>
+
+	}
 }

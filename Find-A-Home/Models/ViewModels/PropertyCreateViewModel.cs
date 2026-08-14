@@ -14,8 +14,9 @@ namespace Find_A_Home.Models.ViewModels
         public int Bedrooms { get; set; }
         public int Bathrooms { get; set; }
         public double Area { get; set; }
-        public string? Address { get; set; }
+        public LocationSelectorViewModel Location { get; set; } = new();
         public string? City { get; set; }
+        public string? Address { get; set; }
         public string? Description { get; set; }
         public bool HasPool { get; set; }
         public bool HasGym { get; set; }
